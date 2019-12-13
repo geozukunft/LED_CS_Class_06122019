@@ -37,11 +37,11 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.cckOnOffLED = new System.Windows.Forms.CheckBox();
             this.gboLEDControll = new System.Windows.Forms.GroupBox();
-            this.cmdIncreaseSmall = new System.Windows.Forms.Button();
-            this.cmdDecreaseSmall = new System.Windows.Forms.Button();
-            this.cmdIncreaseBig = new System.Windows.Forms.Button();
-            this.cmdDecreaseBig = new System.Windows.Forms.Button();
             this.lblBrightnessValue = new System.Windows.Forms.Label();
+            this.cmdDecreaseBig = new System.Windows.Forms.Button();
+            this.cmdIncreaseBig = new System.Windows.Forms.Button();
+            this.cmdDecreaseSmall = new System.Windows.Forms.Button();
+            this.cmdIncreaseSmall = new System.Windows.Forms.Button();
             this.gboLEDControll.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,6 +102,7 @@
             this.cckOnOffLED.Text = "LED ein aus";
             this.cckOnOffLED.UseVisualStyleBackColor = true;
             this.cckOnOffLED.CheckedChanged += new System.EventHandler(this.cckOnOffLED_CheckedChanged);
+            this.cckOnOffLED.Click += new System.EventHandler(this.cckOnOffLED_CheckedChanged);
             // 
             // gboLEDControll
             // 
@@ -117,32 +118,14 @@
             this.gboLEDControll.TabStop = false;
             this.gboLEDControll.Text = "LED Controll";
             // 
-            // cmdIncreaseSmall
+            // lblBrightnessValue
             // 
-            this.cmdIncreaseSmall.Location = new System.Drawing.Point(35, 62);
-            this.cmdIncreaseSmall.Name = "cmdIncreaseSmall";
-            this.cmdIncreaseSmall.Size = new System.Drawing.Size(91, 52);
-            this.cmdIncreaseSmall.TabIndex = 0;
-            this.cmdIncreaseSmall.Text = "+";
-            this.cmdIncreaseSmall.UseVisualStyleBackColor = true;
-            // 
-            // cmdDecreaseSmall
-            // 
-            this.cmdDecreaseSmall.Location = new System.Drawing.Point(191, 62);
-            this.cmdDecreaseSmall.Name = "cmdDecreaseSmall";
-            this.cmdDecreaseSmall.Size = new System.Drawing.Size(91, 52);
-            this.cmdDecreaseSmall.TabIndex = 1;
-            this.cmdDecreaseSmall.Text = "-";
-            this.cmdDecreaseSmall.UseVisualStyleBackColor = true;
-            // 
-            // cmdIncreaseBig
-            // 
-            this.cmdIncreaseBig.Location = new System.Drawing.Point(35, 177);
-            this.cmdIncreaseBig.Name = "cmdIncreaseBig";
-            this.cmdIncreaseBig.Size = new System.Drawing.Size(91, 52);
-            this.cmdIncreaseBig.TabIndex = 2;
-            this.cmdIncreaseBig.Text = "++";
-            this.cmdIncreaseBig.UseVisualStyleBackColor = true;
+            this.lblBrightnessValue.AutoSize = true;
+            this.lblBrightnessValue.Location = new System.Drawing.Point(121, 132);
+            this.lblBrightnessValue.Name = "lblBrightnessValue";
+            this.lblBrightnessValue.Size = new System.Drawing.Size(63, 25);
+            this.lblBrightnessValue.TabIndex = 4;
+            this.lblBrightnessValue.Text = "Wert:";
             // 
             // cmdDecreaseBig
             // 
@@ -152,16 +135,37 @@
             this.cmdDecreaseBig.TabIndex = 3;
             this.cmdDecreaseBig.Text = "--";
             this.cmdDecreaseBig.UseVisualStyleBackColor = true;
+            this.cmdDecreaseBig.Click += new System.EventHandler(this.cmdDecreaseBig_Click);
             // 
-            // lblBrightnessValue
+            // cmdIncreaseBig
             // 
-            this.lblBrightnessValue.AutoSize = true;
-            this.lblBrightnessValue.Location = new System.Drawing.Point(121, 132);
-            this.lblBrightnessValue.Name = "lblBrightnessValue";
-            this.lblBrightnessValue.Size = new System.Drawing.Size(63, 25);
-            this.lblBrightnessValue.TabIndex = 4;
-            this.lblBrightnessValue.Text = "Wert:";
-            this.lblBrightnessValue.Click += new System.EventHandler(this.lblBrightnessValue_Click);
+            this.cmdIncreaseBig.Location = new System.Drawing.Point(35, 177);
+            this.cmdIncreaseBig.Name = "cmdIncreaseBig";
+            this.cmdIncreaseBig.Size = new System.Drawing.Size(91, 52);
+            this.cmdIncreaseBig.TabIndex = 2;
+            this.cmdIncreaseBig.Text = "++";
+            this.cmdIncreaseBig.UseVisualStyleBackColor = true;
+            this.cmdIncreaseBig.Click += new System.EventHandler(this.cmdIncreaseBig_Click);
+            // 
+            // cmdDecreaseSmall
+            // 
+            this.cmdDecreaseSmall.Location = new System.Drawing.Point(191, 62);
+            this.cmdDecreaseSmall.Name = "cmdDecreaseSmall";
+            this.cmdDecreaseSmall.Size = new System.Drawing.Size(91, 52);
+            this.cmdDecreaseSmall.TabIndex = 1;
+            this.cmdDecreaseSmall.Text = "-";
+            this.cmdDecreaseSmall.UseVisualStyleBackColor = true;
+            this.cmdDecreaseSmall.Click += new System.EventHandler(this.cmdDecreaseSmall_Click);
+            // 
+            // cmdIncreaseSmall
+            // 
+            this.cmdIncreaseSmall.Location = new System.Drawing.Point(35, 62);
+            this.cmdIncreaseSmall.Name = "cmdIncreaseSmall";
+            this.cmdIncreaseSmall.Size = new System.Drawing.Size(91, 52);
+            this.cmdIncreaseSmall.TabIndex = 0;
+            this.cmdIncreaseSmall.Text = "+";
+            this.cmdIncreaseSmall.UseVisualStyleBackColor = true;
+            this.cmdIncreaseSmall.Click += new System.EventHandler(this.cmdIncreaseSmall_Click);
             // 
             // Form1
             // 

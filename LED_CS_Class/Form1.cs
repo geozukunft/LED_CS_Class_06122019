@@ -18,7 +18,23 @@ namespace LED_CS_Class
             InitializeComponent();
             PortRefresh();
             cmdClose.Enabled = false;
+            cckOnOffLED.Enabled = false;
+
+            while(true)
+            {
+                if(serialPort1.IsOpen && cckOnOffLED.Checked)
+                {
+                    refreshData();
+                }
+            }
             
+        }
+
+        public void refreshData()
+        {
+            string value = serialPort1.ReadLine();
+            lblBrightnessValue.Text = value;
+            System.Threading.Thread.Sleep(100);
         }
 
         private void PortRefresh()
@@ -46,6 +62,7 @@ namespace LED_CS_Class
                         lblStatus.Text = "Serial Connection Established";
                         cmdOpen.Enabled = false;
                         cmdClose.Enabled = true;
+                        cckOnOffLED.Enabled = true;
                         
                     }
                     catch (System.UnauthorizedAccessException)
@@ -78,12 +95,42 @@ namespace LED_CS_Class
 
         private void cckOnOffLED_CheckedChanged(object sender, EventArgs e)
         {
-
+            if(cckOnOffLED.Checked)
+            {
+                gboLEDControll.Visible = true;
+                cckOnOffLED.BackColor = Color.Green;
+                lblBrightnessValue.Text = "";
+                serialPort1.DiscardInBuffer();
+                serialPort1.WriteLine("y");
+            }
+            else if(cckOnOffLED.Checked == false)
+            {
+                gboLEDControll.Visible = false;
+                cckOnOffLED.Text = "LED Off";
+                cckOnOffLED.BackColor = Color.Red;
+                serialPort1.WriteLine("n");
+            }
         }
 
-        private void lblBrightnessValue_Click(object sender, EventArgs e)
+        private void cmdIncreaseSmall_Click(object sender, EventArgs e)
         {
-            
+            serialPort1.WriteLine("+");
+        }
+
+        private void cmdDecreaseSmall_Click(object sender, EventArgs e)
+        {
+            serialPort1.WriteLine("-");
+        }
+
+        private void cmdIncreaseBig_Click(object sender, EventArgs e)
+        {
+            serialPort1.WriteLine("++");
+        }
+
+        private void cmdDecreaseBig_Click(object sender, EventArgs e)
+        {
+            serialPort1.WriteLine("--");
         }
     }
+
 }
